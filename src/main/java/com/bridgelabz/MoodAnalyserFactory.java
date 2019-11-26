@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserFactory {
 
-    public static MoodAnalyser createMoodAnalyser() {
+    public static MoodAnalyser createMoodAnalyser() throws MoodAnalyseException {
         try {
             Class<?> moodAnalyserClass = Class.forName("com.bridgelabz.MoodAnalyser");
             Constructor<?> moodConstructor = moodAnalyserClass.getConstructor();

@@ -8,6 +8,7 @@ public class MoodAnalyseException extends Exception {
 
     ExceptionType type;
 
+
     public MoodAnalyseException(ExceptionType type, String message) {
         super(message);
         this.type = type;
