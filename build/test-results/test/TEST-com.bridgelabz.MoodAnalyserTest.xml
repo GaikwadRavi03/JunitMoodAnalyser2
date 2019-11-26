@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.MoodAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-11-26T15:39:24" hostname="admin141-desktop" time="0.001">
+<testsuite name="com.bridgelabz.MoodAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-11-26T15:58:57" hostname="admin141-desktop" time="0.001">
   <properties/>
-  <testcase name="givenMessage_ExceptionHappy_Show" classname="com.bridgelabz.MoodAnalyserTest" time="0.001"/>
+  <testcase name="givenNullMood_ShouldThrows_MoodAnalysisException" classname="com.bridgelabz.MoodAnalyserTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
