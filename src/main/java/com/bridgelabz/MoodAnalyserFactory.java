@@ -7,12 +7,12 @@ public class MoodAnalyserFactory {
 
     public static MoodAnalyser createMoodAnalyser() throws MoodAnalyseException {
         try {
-            Class<?> moodAnalyserClass = Class.forName("com.bridgelabz.MoodAnalyser");
+            Class<?> moodAnalyserClass = Class.forName("com.bridgelabz.MoodAnalyser1");
             Constructor<?> moodConstructor = moodAnalyserClass.getConstructor();
             Object moodObj = moodConstructor.newInstance();
             return (MoodAnalyser) moodObj;
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new MoodAnalyseException("Enter Proper Class Name");
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

@@ -63,4 +63,12 @@ public class MoodAnalyserTest {
         boolean result= moodAnalyser.equals(moodAnalyser,moodAnalyser1);
         Assert.assertFalse(result);
     }
+
+    @Test
+    public void givenClassNameWhen_ImproperShouldThrow_MoodAnalysisException() throws MoodAnalyseException {
+        MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser();
+        MoodAnalyser moodAnalyser1= new MoodAnalyser();
+        boolean result= moodAnalyser.equals(moodAnalyser,moodAnalyser1);
+        Assert.assertFalse(result);
+    }
 }
