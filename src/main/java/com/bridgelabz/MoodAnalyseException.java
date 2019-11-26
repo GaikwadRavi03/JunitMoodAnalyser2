@@ -2,8 +2,10 @@ package com.bridgelabz;
 
 public class MoodAnalyseException extends Exception {
 
-    public MoodAnalyseException(String enter_proper_class_name) {
-        super(enter_proper_class_name);
+
+    public MoodAnalyseException(ExceptionType noSuchClass) {
+        super(noSuchClass.toString());
+        this.type=noSuchClass;
     }
 
     enum ExceptionType {

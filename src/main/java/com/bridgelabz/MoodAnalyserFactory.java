@@ -12,7 +12,7 @@ public class MoodAnalyserFactory {
             Object moodObj = moodConstructor.newInstance();
             return (MoodAnalyser) moodObj;
         } catch (ClassNotFoundException e) {
-            throw new MoodAnalyseException("Enter Proper Class Name");
+            throw new MoodAnalyseException(MoodAnalyseException.ExceptionType.NO_SUCH_CLASS);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
