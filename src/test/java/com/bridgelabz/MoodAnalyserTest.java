@@ -10,7 +10,7 @@ public class MoodAnalyserTest {
     public void givenMessageWhenSadShow() {
         MoodAnalyser moodAnalyser = new MoodAnalyser("This is SAD mood");
         try {
-            Assert.assertEquals("SAD",MoodAnalyser.analyseMood());
+            Assert.assertEquals("SAD", MoodAnalyser.analyseMood());
         } catch (MoodAnalyseException e) {
             e.printStackTrace();
         }
@@ -20,7 +20,7 @@ public class MoodAnalyserTest {
     public void givenMessageWhenHappyShow() {
         MoodAnalyser moodAnalyser = new MoodAnalyser("This is Happy mood");
         try {
-            Assert.assertEquals("HAPPY",MoodAnalyser.analyseMood());
+            Assert.assertEquals("HAPPY", MoodAnalyser.analyseMood());
         } catch (MoodAnalyseException e) {
             e.printStackTrace();
         }
@@ -30,7 +30,7 @@ public class MoodAnalyserTest {
     public void givenMessage_ExceptionHappy_Show() {
         MoodAnalyser moodAnalyser = new MoodAnalyser(null);
         try {
-            Assert.assertEquals("HAPPY",MoodAnalyser.analyseMood());
+            Assert.assertEquals("HAPPY", MoodAnalyser.analyseMood());
         } catch (MoodAnalyseException e) {
             e.printStackTrace();
         }
@@ -54,5 +54,12 @@ public class MoodAnalyserTest {
         } catch (MoodAnalyseException e) {
             Assert.assertEquals(MoodAnalyseException.ExceptionType.ENTERED_EMPTY, e.type);
         }
+    }
+
+    @Test
+    public void givenMoodAnalyserClass_WhenProper_ShouldReturnObjet() {
+        MoodAnalyser moodAnalyser = MoodAnalyserFactory.createMoodAnalyser();
+        boolean result= moodAnalyser.equals(moodAnalyser);
+        Assert.assertTrue(result);
     }
 }

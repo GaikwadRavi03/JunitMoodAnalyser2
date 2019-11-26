@@ -13,13 +13,22 @@ public class MoodAnalyser {
 
     public static String analyseMood() throws MoodAnalyseException {
         try {
+            if (message.length() == 0)
+                throw new MoodAnalyseException(MoodAnalyseException.ExceptionType.ENTERED_EMPTY, "Please enter proper mood");
             if (message.contains("SAD")) {
                 return "SAD";
             } else {
                 return "HAPPY";
             }
         } catch (NullPointerException e) {
-            return "HAPPY";
+            throw new MoodAnalyseException(MoodAnalyseException.ExceptionType.ENTERED_NULL, "Please enter proper mood");
         }
+    }
+
+    @Override
+    public boolean equals(Object another) {
+        if (another==this)
+            return true;
+        return false;
     }
 }
