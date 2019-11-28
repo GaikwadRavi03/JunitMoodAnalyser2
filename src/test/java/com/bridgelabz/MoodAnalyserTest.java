@@ -3,6 +3,8 @@ package com.bridgelabz;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
+
 public class MoodAnalyserTest {
 
     @Test
@@ -56,11 +58,13 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void givenMoodAnalyserClass_WhenProper_ShouldReturnObjet() throws MoodAnalyseException {
-        MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser();
-        MoodAnalyser moodAnalyser1 = new MoodAnalyser();
-        boolean result = moodAnalyser.equals(moodAnalyser1);
-        Assert.assertTrue(result);
+    public void givenMoodAnalyserClass_WhenProper_ShouldReturnObjet() {
+        try {
+            Constructor<?> constructor = MoodAnalyserReflector.createMoodAnalyser(String.class);
+            Object myObject = MoodAnalyserReflector.createMoodAnalyser(constructor,"i Am Happy Mood");
+            Assert.assertEquals(new MoodAnalyser("I am Happy Mood"),myObject);
+        } catch (MoodAnalyseException e) {
+        }
     }
 
     @Test
@@ -109,6 +113,16 @@ public class MoodAnalyserTest {
     public void givenHappyMessage_withDefaultConstructor_returnHappy() {
         try {
             MoodAnalyserReflector.createMoodAnalyser();
+        } catch (MoodAnalyseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenHappyMessage_withparametrizedConstructor_returnHappy() {
+        try {
+            Constructor constructor = MoodAnalyserReflector.getConstructor();
+            Object myObject = MoodAnalyserReflector.createMoodAnalyser(constructor);
         } catch (MoodAnalyseException e) {
             e.printStackTrace();
         }
