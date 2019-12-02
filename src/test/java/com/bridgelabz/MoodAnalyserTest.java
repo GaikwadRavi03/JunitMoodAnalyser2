@@ -49,7 +49,7 @@ public class MoodAnalyserTest {
 
     @Test
     public void givenEmptyMood_ShouldThrows_MoodAnalysisException() {
-        MoodAnalyser moodAnalyser = new MoodAnalyser();
+        MoodAnalyser moodAnalyser = new MoodAnalyser("");
         try {
             moodAnalyser.analyseMood();
         } catch (MoodAnalyseException e) {
@@ -57,18 +57,17 @@ public class MoodAnalyserTest {
         }
     }
 
+    //-------------------- Default---------------
     @Test
-    public void givenMoodAnalyserClass_WhenProper_ShouldReturnObjet() {
-        try {
-            Constructor<?> constructor = MoodAnalyserReflector.createMoodAnalyser(String.class);
-            Object myObject = MoodAnalyserReflector.createMoodAnalyser(constructor,"i Am Happy Mood");
-            Assert.assertEquals(new MoodAnalyser("I am Happy Mood"),myObject);
-        } catch (MoodAnalyseException e) {
-        }
+    public void givenMoodAnalyserClass_WhenProper_ShouldReturnObjectForDefault() throws MoodAnalyseException {
+        MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser();
+        MoodAnalyser moodAnalyser1 = new MoodAnalyser();
+        boolean result = moodAnalyser.equals(moodAnalyser1);
+        Assert.assertTrue(result);
     }
 
     @Test
-    public void givenClassNameWhen_ImproperShouldThrow_MoodAnalysisException() {
+    public void givenClassNameWhen_ImproperShouldThrow_MoodAnalysisExceptionForDefault() {
         try {
             MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser();
         } catch (MoodAnalyseException e) {
@@ -77,7 +76,7 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void givenClassNameWhen_ConstructorNotProper_ShouldThrow_MoodAnalysisException() {
+    public void givenClassNameWhen_ConstructorNotProper_ShouldThrow_MoodAnalysisExceptionForDefault() {
         try {
             MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser();
         } catch (MoodAnalyseException e) {
@@ -85,6 +84,33 @@ public class MoodAnalyserTest {
         }
     }
 
+    //---------------------parametrized--------------------
+    @Test
+    public void givenMoodAnalyserClass_WhenProper_ShouldReturnObjectForParametrized() throws MoodAnalyseException {
+        MoodAnalyser moodAnalyser = new MoodAnalyser("HAPPY");
+       String currentMood= moodAnalyser.analyseMood();
+        Assert.assertEquals("HAPPY",currentMood);
+    }
+
+    @Test
+    public void givenClassNameWhen_ImproperShouldThrow_MoodAnalysisExceptionForParametrized() {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser();
+        } catch (MoodAnalyseException e) {
+            Assert.assertEquals(MoodAnalyseException.ExceptionType.NO_SUCH_CLASS.toString(), e.getMessage());
+        }
+    }
+
+    @Test
+    public void givenClassNameWhen_ConstructorNotProper_ShouldThrow_MoodAnalysisExceptionForParametrized() {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalyserReflector.createMoodAnalyser();
+        } catch (MoodAnalyseException e) {
+            Assert.assertEquals(MoodAnalyseException.ExceptionType.NO_SUCH_METHOD.toString(), e.getMessage());
+        }
+    }
+
+    //----------------------------------------------------------------
     @Test
     public void givenHappyMessage_WithReflection_shouldReturnHappy() {
         try {
@@ -119,7 +145,7 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void givenHappyMessage_withparametrizedConstructor_returnHappy() {
+    public void givenHappyMessage_withParametrizedConstructor_returnHappy() {
         try {
             Constructor constructor = MoodAnalyserReflector.getConstructor();
             Object myObject = MoodAnalyserReflector.createMoodAnalyser(constructor);

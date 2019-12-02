@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bridgelabz.MoodAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-02T21:10:10" hostname="admin141-desktop" time="0.001">
+  <properties/>
+  <testcase name="givenClassNameWhen_ConstructorNotProper_ShouldThrow_MoodAnalysisExceptionForParametrized" classname="com.bridgelabz.MoodAnalyserTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -55,5 +55,50 @@ public class MoodAnalyserReflector {
                     "Define Proper Method name");
         }
     }
+
+    public static MoodAnalyser createMoodAnalyser() throws MoodAnalyseException {
+        try {
+            Class<?> moodAnalyserClass = Class.forName("com.bridgelabz.MoodAnalyser");
+            Constructor<?> moodConstructor = moodAnalyserClass.getConstructor();
+            Object moodObj = moodConstructor.newInstance();
+            return (MoodAnalyser) moodObj;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public static MoodAnalyser createMoodAnalyser(String message) throws MoodAnalyseException {
+        try {
+            Class<?> moodAnalyserClass = Class.forName("com.bridgelabz.MoodAnalyser");
+            Constructor<?> moodConstructor = moodAnalyserClass.getConstructor(Object.class);
+            Object moodObj = moodConstructor.newInstance(message);
+            return (MoodAnalyser) moodObj;
+        } catch (ClassNotFoundException e) {
+            throw new MoodAnalyseException(MoodAnalyseException.ExceptionType.NO_SUCH_CLASS);
+        } catch (NoSuchMethodException e) {
+            throw new MoodAnalyseException(MoodAnalyseException.ExceptionType.NO_SUCH_METHOD);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            throw new MoodAnalyseException(MoodAnalyseException.ExceptionType.NO_SUCH_METHOD);
+        }
+        return null;
+    }
 }
 
